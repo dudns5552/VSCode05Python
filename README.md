@@ -1,0 +1,1 @@
+"# VSCode05Python" 
