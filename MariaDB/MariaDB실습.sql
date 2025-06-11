@@ -1,4 +1,4 @@
-/*
+mysqlmysql/*
 블럭단위 주석은 Java와 동일하게 작성
 */
 
@@ -26,6 +26,37 @@ Ctrl + Shift + F9	: 현재 쿼리를 실행한다. 단 마지막에 기술한
 					사용하지 않고 양수의 범위만 사용. 이때
 					양의 범위가 2배로 늘어남.
 */
+
+/*
+MariaDb에서 새로운 데이터베이스와 계정 생성하기
+	오라클에서는 계정만 생성하면 되지만 MySQL(MariDB)에서는
+	새로운 DB와 User를 동시에 생성한 후 권한설정을 해야한다.
+*/
+
+#### 아래 작업은 root 계정으로 접속한 후 실행해야 함 ####
+
+# 새로운 데이터베이스 생성
+CREATE DATABASE sample_db;
+# 새로운 사용자 계정 생성(로컬에서만 접속할 수 있게 설정)
+CREATE USER 'sample_user'@'localhost' IDENTIFIED BY '1234';
+# sample_db에서 사용할 수 있는 모든 권한을 sample_user에게 부여
+GRANT ALL PRIVILEGES ON sample_db.* TO 'sample_user'@'localhost';
+# 이 명령을 통해 위에서 설정한 사항을 MariaDB에 적용
+FLUSH PRIVILEGES;
+
+
+
+
+
+
+
+## 여기부터는 sample_user 계정으로 접속한 후 작성 ##
+
+
+
+
+
+
 # 1. 숫자형으로 구성된 테이블
 CREATE TABLE tb_int (
 	idx INT PRIMARY KEY AUTO_INCREMENT,
@@ -201,3 +232,12 @@ INSERT INTO board
 VALUES ('제목5', '내용5입니다.', 'korea', NOW(), 0);
 
 SELECT * FROM board;
+
+
+CREATE TABLE phonebooks (
+	idx INT PRIMARY KEY AUTO_INCREMENT,
+	username VARCHAR(10) NOT NULL,
+	phone VARCHAR(20) NOT NULL,	
+	address VARCHAR(50) NOT NULL
+);
+DESC phonebooks;

@@ -4,6 +4,7 @@ conn = pymysql.connect(host='localhost', user='sample_user',
                        password='1234', db='sample_db', charset='utf8')
 curs = conn.cursor()
 
+# format() 함수는 인덱스를 통해 값을 설정할 수 있다.
 sql = """update board set title ='{1}', content='{2}'
           where num={0}
           """.format(input('수정할일련번호 : '),
